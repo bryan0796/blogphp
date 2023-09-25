@@ -1,18 +1,36 @@
 <?php
-  include_once("helpers/url.php");
+include_once('templates/header.php');
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="<?= $BASE_URL ?>/css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
-  <title>Blog Codar</title>
-</head>
-<body>
-  
-</body>
-</html>
+
+<main>
+  <div id="title-container">
+    <h1>Blog Codar</h1>
+    <p>O seu blog de programação</p>
+  </div>
+  <div id="posts-container">
+    <?php foreach ($posts as $post): ?>
+      <div class="post-box">
+        <img src="<?= $BASE_URL ?>/img/<?= $post['img'] ?>" alt="<?= $post['title'] ?>">
+        <h2 class="post-title">
+          <a href="<?= $BASE_URL ?>post.php?id=<?= $post['id'] ?>">
+            <?= $post['title'] ?>
+          </a>
+        </h2>
+        <p class="post-description">
+          <?= $post['description'] ?>
+        </p>
+        <div class="tags-container">
+          <?php foreach ($post['tags'] as $tag): ?>
+            <a href="#">
+              <?= $tag ?>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
+</main>
+
+<?php
+include_once('templates/footer.php');
+?>
